@@ -49,3 +49,5 @@ __pycache__/
 .mvn/
 dream_env/
 generated_images/
+python-env/
+target/
