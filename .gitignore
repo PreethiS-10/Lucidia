@@ -51,3 +51,5 @@ dream_env/
 generated_images/
 python-env/
 target/
+.env
+*.pyc
