@@ -1,0 +1,302 @@
+/* Root styles */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-background-color: #1a1a2e;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #4B0082);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #9B30FF, #5D0090);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Text area styles */
+.text-area {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: white;
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+/* Label styles */
+.label {
+    -fx-text-fill: #F0F8FF;
+}
+
+/* Progress bar styles */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #DDA0DD);
+    -fx-background-radius: 5;
+}
+
+.progress-bar .track {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 5;
+}
+
+/* Tab pane styles */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: rgba(138, 43, 226, 0.3);
+    -fx-background-radius: 10 10 0 0;
+}
+
+.tab:selected {
+    -fx-background-color: rgba(138, 43, 226, 0.6);
+}
+
+/* List view styles */
+.list-view {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 10;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: rgba(138, 43, 226, 0.3);
+}
+
+/* Card styles for analysis */
+.card {
+    -fx-background-color: rgba(138, 43, 226, 0.2);
+    -fx-background-radius: 15;
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+    -fx-padding: 15;
+}
+
+.analysis-card {
+    -fx-background-color: rgba(25, 25, 112, 0.4);
+    -fx-background-radius: 20;
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-padding: 25;
+}
+
+/* Enhanced Text Area Styles for Better Sizing */
+.text-area {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: white;
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 3px;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+    -fx-cursor: text;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-background-color: rgba(138, 43, 226, 0.3);
+}
+
+.text-area .scroll-bar:vertical .thumb {
+    -fx-background-color: #8A2BE2;
+    -fx-background-radius: 5;
+}
+
+.text-area .scroll-bar:vertical .track {
+    -fx-background-color: rgba(138, 43, 226, 0.1);
+}
+
+/* Dream text area specific styling */
+#dreamTextArea {
+    -fx-font-size: 15px;
+    -fx-pref-height: 400px;
+    -fx-min-height: 300px;
+    -fx-max-height: 600px;
+}
+
+/* Analysis result area specific styling */
+#analysisResultArea {
+    -fx-font-size: 14px;
+    -fx-pref-height: 300px;
+    -fx-min-height: 200px;
+    -fx-max-height: 500px;
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Focus styles */
+.text-area:focused {
+    -fx-border-color: #DDA0DD;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(221, 160, 221, 0.3), 10, 0.5, 0, 0);
+}
+
+/* Prompt text styling */
+.text-area .prompt-text {
+    -fx-fill: #9370DB;
+    -fx-font-style: italic;
+}
+
+/* analytics.css */
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Chart Styling */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-pie {
+    -fx-border-color: transparent;
+}
+
+.chart-pie-label {
+    -fx-fill: #F0F8FF;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.chart-title {
+    -fx-text-fill: #F0F8FF;
+    -fx-font-weight: bold;
+}
+
+.axis {
+    -fx-tick-label-fill: #DDA0DD;
+    -fx-font-size: 12px;
+}
+
+.axis-label {
+    -fx-text-fill: #F0F8FF;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #F0F8FF;
+}
+
+/* Bar Chart Styling */
+.default-color0.chart-bar {
+    -fx-bar-fill: linear-gradient(to bottom, #8A2BE2, #9370DB);
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #9370DB);
+}
+
+.chart-bar {
+    -fx-background-radius: 5 5 0 0;
+}
+
+/* List View Styling */
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F0F8FF;
+    -fx-border-color: transparent;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: rgba(138, 43, 226, 0.3);
+    -fx-background-radius: 8;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: rgba(147, 112, 219, 0.5);
+    -fx-background-radius: 8;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #9370DB);
+    -fx-text-fill: #F0F8FF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #DDA0DD;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #9370DB, #8A2BE2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(221, 160, 221, 0.8), 10, 0.5, 0, 0);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #7B68EE, #6A5ACD);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: rgba(138, 43, 226, 0.1);
+    -fx-border-color: transparent;
+    -fx-background-radius: 2;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #9370DB);
+    -fx-background-radius: 2;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: linear-gradient(to bottom, #9370DB, #DDA0DD);
+}
+
+/* Label Styling */
+.label {
+    -fx-text-fill: #F0F8FF;
+}
+
+/* Separator Styling */
+.separator .line {
+    -fx-border-color: linear-gradient(to right, transparent, #8A2BE2, transparent);
+    -fx-border-width: 1;
+}

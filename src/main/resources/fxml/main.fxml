@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lucidia.lucidia.controller.MainController"
+            styleClass="main-container">
+
+    <top>
+        <VBox spacing="0">
+            <!-- Enhanced Menu Bar -->
+            <MenuBar style="-fx-background-color: linear-gradient(to bottom, rgba(138,43,226,0.9), rgba(75,0,130,0.8)); -fx-border-width: 0 0 3 0; -fx-padding: 10 0;">
+                <menus>
+                    <Menu mnemonicParsing="false" text="✨ File" style="-fx-font-size: 14px;">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleNewDream" text="🌟 New Dream Entry" />
+                            <SeparatorMenuItem />
+                            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="🚪 Exit Application" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="🔮 Analysis" style="-fx-font-size: 14px;">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleViewAnalysis" text="📊 View Current Analysis" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleShowAnalytics" text="📈 Analytics Dashboard" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <!-- Application Header Banner -->
+            <HBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(to right, rgba(138,43,226,0.15), rgba(75,0,130,0.15)); -fx-padding: 15 30;">
+                <Label text="🌙" style="-fx-font-size: 32px;" />
+                <VBox spacing="2" alignment="CENTER_LEFT">
+                    <Label text="LUCIDIA Dream Oracle" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF; -fx-font-family: 'Orbitron';" />
+                    <Label text="Explore the depths of your subconscious mind" style="-fx-font-size: 12px; -fx-text-fill: #DDA0DD; -fx-font-style: italic;" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Analytics Button -->
+                <Button onAction="#handleShowAnalytics" text="📈 Analytics"
+                        style="-fx-font-size: 14px; -fx-padding: 10 20; -fx-font-weight: 600; -fx-background-color: linear-gradient(45deg, #4169E1, #8A2BE2);" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: transparent;">
+            <tabs>
+                <!-- Dream Journal Tab -->
+                <Tab fx:id="dreamJournalTab" text="✨ Dream Journal" style="-fx-font-size: 15px;">
+                    <content>
+                        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                            <content>
+                                <VBox spacing="25">
+                                    <padding>
+                                        <Insets bottom="30" left="35" right="35" top="30" />
+                                    </padding>
+
+                                    <!-- Enhanced Header with Welcome Message -->
+                                    <VBox spacing="12" style="-fx-background-color: linear-gradient(to right, rgba(138,43,226,0.2), rgba(75,0,130,0.2)); -fx-background-radius: 15; -fx-padding: 25;">
+                                        <HBox alignment="CENTER" spacing="20">
+                                            <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" text="🌙 Record Your Dream Journey" />
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <VBox alignment="CENTER_RIGHT" spacing="3">
+                                                <Label fx:id="statusLabel" text="✨ Ready to capture dreams..." style="-fx-font-style: italic; -fx-font-size: 13px; -fx-text-fill: #DDA0DD;" />
+                                                <Label text="Your dreams hold the key to your inner world" style="-fx-font-size: 11px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+
+                                    <!-- Dream Metadata in Card Format -->
+                                    <HBox spacing="25" alignment="CENTER">
+                                        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(138,43,226,0.25), rgba(147,112,219,0.25)); -fx-background-radius: 15; -fx-padding: 20; -fx-border-color: #8A2BE2; -fx-border-width: 2; -fx-border-radius: 15; -fx-min-width: 200;">
+                                            <Label text="📅 Dream Date:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #F0F8FF;" />
+                                            <DatePicker fx:id="dreamDatePicker" style="-fx-pref-width: 160;" />
+                                            <Label text="When did this dream occur?" style="-fx-font-size: 10px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                        </VBox>
+
+                                        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(147,112,219,0.25), rgba(221,160,221,0.25)); -fx-background-radius: 15; -fx-padding: 20; -fx-border-color: #9370DB; -fx-border-width: 2; -fx-border-radius: 15; -fx-min-width: 200;">
+                                            <Label text="😴 Sleep Quality:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #F0F8FF;" />
+                                            <Spinner fx:id="sleepQualitySpinner" min="1" max="10" initialValue="5" prefWidth="100" style="-fx-font-size: 16px;" />
+                                            <Label text="How well did you sleep?" style="-fx-font-size: 10px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                        </VBox>
+
+                                        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(221,160,221,0.25), rgba(218,112,214,0.25)); -fx-background-radius: 15; -fx-padding: 20; -fx-border-color: #DDA0DD; -fx-border-width: 2; -fx-border-radius: 15; -fx-min-width: 200;">
+                                            <Label text="🌟 Lucidity Level:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #F0F8FF;" />
+                                            <Spinner fx:id="luciditySpinner" min="0" max="5" initialValue="0" prefWidth="100" style="-fx-font-size: 16px;" />
+                                            <Label text="Were you aware it was a dream?" style="-fx-font-size: 10px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                        </VBox>
+
+                                        <!-- Analytics Quick Access Card -->
+                                        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(65,105,225,0.25), rgba(138,43,226,0.25)); -fx-background-radius: 15; -fx-padding: 20; -fx-border-color: #4169E1; -fx-border-width: 2; -fx-border-radius: 15; -fx-min-width: 200;">
+                                            <Label text="📈" style="-fx-font-size: 24px;" />
+                                            <Label text="Dream Analytics" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #F0F8FF;" />
+                                            <Button onAction="#handleShowAnalytics" text="View Insights"
+                                                    style="-fx-font-size: 12px; -fx-padding: 8 15; -fx-font-weight: 600;" />
+                                            <Label text="Discover patterns" style="-fx-font-size: 10px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                        </VBox>
+                                    </HBox>
+
+                                    <!-- Dream Content Section - ENLARGED -->
+                                    <VBox spacing="15" style="-fx-background-color: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(30,30,60,0.4)); -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #8A2BE2; -fx-border-width: 2; -fx-border-radius: 15;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label text="💭 Dream Description:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label fx:id="wordCountLabel" text="0 words" style="-fx-font-size: 12px; -fx-text-fill: #9370DB; -fx-font-style: italic; -fx-background-color: rgba(147,112,219,0.3); -fx-padding: 5 10; -fx-background-radius: 8;" />
+                                        </HBox>
+
+                                        <!-- ENLARGED Dream Text Area -->
+                                        <TextArea fx:id="dreamTextArea"
+                                                  wrapText="true"
+                                                  prefRowCount="15"
+                                                  minHeight="300"
+                                                  prefHeight="400"
+                                                  maxHeight="600"
+                                                  promptText="🌟 Describe your dream in vivid detail... What did you see? Who was there? How did you feel? Include colors, emotions, sounds, and any symbols that stood out."
+                                                  style="-fx-font-size: 15px; -fx-line-spacing: 4px; -fx-padding: 15px;" />
+
+                                        <HBox spacing="15" alignment="CENTER">
+                                            <Button fx:id="saveDreamButton" onAction="#handleSaveDream" text="💾 Save Dream"
+                                                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+                                            <Button fx:id="analyzeDreamButton" onAction="#handleAnalyzeDream" text="🔍 Analyze Dream"
+                                                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600; -fx-background-color: linear-gradient(45deg, #4169E1, #8A2BE2);" prefHeight="40" />
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Button fx:id="clearButton" onAction="#handleClear" text="🗑️ Clear"
+                                                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+                                            <ProgressIndicator fx:id="analysisProgress" visible="false" prefWidth="35" prefHeight="35" />
+                                        </HBox>
+                                    </VBox>
+
+                                    <Separator style="-fx-background-color: linear-gradient(to right, transparent, #8A2BE2, #DDA0DD, #8A2BE2, transparent); -fx-pref-height: 3;" />
+
+                                    <!-- Analysis Results Section - ENLARGED -->
+                                    <VBox spacing="15" style="-fx-background-color: linear-gradient(135deg, rgba(75,0,130,0.3), rgba(138,43,226,0.4)); -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #9370DB; -fx-border-width: 2; -fx-border-radius: 15;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" text="🧠 Dream Analysis Results" />
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="AI-Powered Insights" style="-fx-font-size: 11px; -fx-text-fill: #9370DB; -fx-font-style: italic; -fx-background-color: rgba(147,112,219,0.3); -fx-padding: 5 10; -fx-background-radius: 8;" />
+                                        </HBox>
+
+                                        <!-- ENLARGED Analysis Result Area -->
+                                        <TextArea fx:id="analysisResultArea"
+                                                  editable="false"
+                                                  wrapText="true"
+                                                  prefRowCount="8"
+                                                  minHeight="200"
+                                                  prefHeight="300"
+                                                  maxHeight="500"
+                                                  promptText="Your dream analysis will appear here after processing..."
+                                                  style="-fx-font-size: 14px; -fx-line-spacing: 3px; -fx-padding: 15px;" />
+                                    </VBox>
+
+                                    <Separator style="-fx-background-color: linear-gradient(to right, transparent, #8A2BE2, #DDA0DD, #8A2BE2, transparent); -fx-pref-height: 3;" />
+
+                                    <!-- Dream Visualization Section -->
+                                    <VBox spacing="20" style="-fx-background-color: linear-gradient(135deg, rgba(138,43,226,0.3), rgba(75,0,130,0.4)); -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #DDA0DD; -fx-border-width: 2; -fx-border-radius: 15;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" text="🎨 Dream Visualization Portal" />
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="Transform dreams into art" style="-fx-font-size: 11px; -fx-text-fill: #9370DB; -fx-font-style: italic; -fx-background-color: rgba(147,112,219,0.3); -fx-padding: 5 10; -fx-background-radius: 8;" />
+                                        </HBox>
+
+                                        <HBox spacing="15" alignment="CENTER_LEFT">
+                                            <Button fx:id="generateImageButton" onAction="#handleGenerateImage"
+                                                    text="🌈 Generate Cosmic Art"
+                                                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+                                            <VBox spacing="8" alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                <ProgressBar fx:id="imageGenerationProgress" prefWidth="350" visible="false" style="-fx-pref-height: 12;" />
+                                                <Label fx:id="imageGenerationStatus" text="🌟 Ready to create magic"
+                                                       style="-fx-font-size: 13px; -fx-text-fill: #DDA0DD; -fx-font-style: italic;" />
+                                            </VBox>
+                                        </HBox>
+
+                                        <!-- Image Display with Enhanced Styling -->
+                                        <VBox spacing="15" alignment="CENTER" style="-fx-background-color: rgba(16,33,62,0.6); -fx-border-color: #8A2BE2; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 30; -fx-border-width: 3; -fx-min-height: 420;">
+                                            <Label text="✨ Your Dream Comes to Life:" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                            <ImageView fx:id="dreamVisualizationView" fitWidth="500" fitHeight="350"
+                                                       preserveRatio="true" smooth="true" />
+                                            <Label text="The cosmos interprets your nocturnal visions" style="-fx-font-size: 12px; -fx-text-fill: #9370DB; -fx-font-style: italic;" />
+                                        </VBox>
+                                    </VBox>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <!-- Dream History Tab -->
+                <Tab fx:id="dreamHistoryTab" text="📚 Dream History" style="-fx-font-size: 15px;">
+                    <content>
+                        <VBox spacing="20">
+                            <padding>
+                                <Insets bottom="30" left="35" right="35" top="30" />
+                            </padding>
+
+                            <!-- Header with Search and Filter -->
+                            <VBox spacing="15" style="-fx-background-color: linear-gradient(to right, rgba(138,43,226,0.2), rgba(75,0,130,0.2)); -fx-background-radius: 15; -fx-padding: 25;">
+                                <HBox alignment="CENTER" spacing="20">
+                                    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" text="📖 Your Dream Chronicle" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="refreshHistoryButton" onAction="#handleRefreshHistory" text="🔄 Refresh"
+                                            style="-fx-font-size: 13px; -fx-padding: 10 20; -fx-font-weight: 600;" />
+                                </HBox>
+
+                                <HBox spacing="15" alignment="CENTER_LEFT">
+                                    <Label text="🔍 Search:" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #DDA0DD;" />
+                                    <TextField fx:id="searchField" promptText="Search your dreams..." prefWidth="300"
+                                               style="-fx-font-size: 13px;" />
+                                    <Label text="📅 Filter by:" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #DDA0DD;" />
+                                    <ComboBox fx:id="filterComboBox" promptText="All Dreams" prefWidth="150"
+                                              style="-fx-font-size: 13px;" />
+                                </HBox>
+                            </VBox>
+
+                            <!-- Dream List with Enhanced Styling -->
+                            <VBox spacing="10" style="-fx-background-color: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(30,30,60,0.4)); -fx-background-radius: 15; -fx-padding: 20; -fx-border-color: #8A2BE2; -fx-border-width: 2; -fx-border-radius: 15;">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="📝 Your Dreams" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button onAction="#handleShowAnalytics" text="📈 View Analytics"
+                                            style="-fx-font-size: 12px; -fx-padding: 8 15; -fx-font-weight: 600;" />
+                                </HBox>
+                                <ListView fx:id="dreamHistoryList" prefHeight="550" onMouseClicked="#handleDreamSelected"
+                                          style="-fx-background-color: transparent;" />
+                            </VBox>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Analytics Tab -->
+                <Tab fx:id="analyticsTab" text="📈 Analytics" style="-fx-font-size: 15px;">
+                    <content>
+                        <VBox alignment="CENTER" spacing="30" style="-fx-padding: 50;">
+                            <!-- Header Section -->
+                            <VBox spacing="15" alignment="CENTER">
+                                <Label text="📊 Dream Analytics Dashboard" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF; -fx-font-family: 'Orbitron';" />
+                                <Label text="Unlock the secrets of your subconscious through data-driven insights"
+                                       style="-fx-font-size: 16px; -fx-text-fill: #DDA0DD; -fx-font-style: italic; -fx-text-alignment: center;" />
+                            </VBox>
+
+                            <!-- Feature Cards -->
+                            <HBox spacing="25" alignment="CENTER">
+                                <!-- Statistics Card -->
+                                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(138,43,226,0.25), rgba(147,112,219,0.25)); -fx-background-radius: 20; -fx-padding: 30; -fx-border-color: #8A2BE2; -fx-border-width: 2; -fx-border-radius: 20; -fx-pref-width: 250;">
+                                    <Label text="📈" style="-fx-font-size: 48px;" />
+                                    <Label text="Dream Statistics" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Track your dream patterns, frequencies, and trends over time"
+                                           style="-fx-font-size: 12px; -fx-text-fill: #DDA0DD; -fx-text-alignment: center; -fx-wrap-text: true;" />
+                                </VBox>
+
+                                <!-- Insights Card -->
+                                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(147,112,219,0.25), rgba(221,160,221,0.25)); -fx-background-radius: 20; -fx-padding: 30; -fx-border-color: #9370DB; -fx-border-width: 2; -fx-border-radius: 20; -fx-pref-width: 250;">
+                                    <Label text="💡" style="-fx-font-size: 48px;" />
+                                    <Label text="AI Insights" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Get personalized recommendations and pattern analysis from AI"
+                                           style="-fx-font-size: 12px; -fx-text-fill: #DDA0DD; -fx-text-alignment: center; -fx-wrap-text: true;" />
+                                </VBox>
+
+                                <!-- Visualization Card -->
+                                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(221,160,221,0.25), rgba(218,112,214,0.25)); -fx-background-radius: 20; -fx-padding: 30; -fx-border-color: #DDA0DD; -fx-border-width: 2; -fx-border-radius: 20; -fx-pref-width: 250;">
+                                    <Label text="📊" style="-fx-font-size: 48px;" />
+                                    <Label text="Charts and Graphs" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Visualize your dream data with interactive charts and graphs"
+                                           style="-fx-font-size: 12px; -fx-text-fill: #DDA0DD; -fx-text-alignment: center; -fx-wrap-text: true;" />
+                                </VBox>
+                            </HBox>
+
+                            <!-- Call to Action -->
+                            <VBox spacing="20" alignment="CENTER" style="-fx-background-color: linear-gradient(135deg, rgba(65,105,225,0.3), rgba(138,43,226,0.4)); -fx-background-radius: 20; -fx-padding: 40; -fx-border-color: #4169E1; -fx-border-width: 3; -fx-border-radius: 20; -fx-pref-width: 600;">
+                                <Label text="🚀 Ready to Explore Your Dream Data?" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                <Label text="Open the full analytics dashboard to dive deep into your dream patterns, emotional trends, and subconscious insights."
+                                       style="-fx-font-size: 14px; -fx-text-fill: #DDA0DD; -fx-text-alignment: center; -fx-wrap-text: true;" />
+                                <Button onAction="#handleShowAnalytics" text="🎯 Open Analytics Dashboard"
+                                        style="-fx-font-size: 18px; -fx-padding: 15 40; -fx-font-weight: bold; -fx-background-color: linear-gradient(45deg, #4169E1, #8A2BE2);" />
+                            </VBox>
+
+                            <!-- Quick Stats Preview -->
+                            <HBox spacing="20" alignment="CENTER">
+                                <VBox spacing="8" alignment="CENTER" style="-fx-background-color: rgba(138,43,226,0.2); -fx-background-radius: 15; -fx-padding: 15; -fx-min-width: 120;">
+                                    <Label text="🌙" style="-fx-font-size: 20px;" />
+                                    <Label fx:id="previewTotalDreams" text="..." style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Total Dreams" style="-fx-font-size: 11px; -fx-text-fill: #DDA0DD;" />
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER" style="-fx-background-color: rgba(147,112,219,0.2); -fx-background-radius: 15; -fx-padding: 15; -fx-min-width: 120;">
+                                    <Label text="😴" style="-fx-font-size: 20px;" />
+                                    <Label fx:id="previewSleepQuality" text="..." style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Avg Sleep" style="-fx-font-size: 11px; -fx-text-fill: #DDA0DD;" />
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER" style="-fx-background-color: rgba(221,160,221,0.2); -fx-background-radius: 15; -fx-padding: 15; -fx-min-width: 120;">
+                                    <Label text="🌟" style="-fx-font-size: 20px;" />
+                                    <Label fx:id="previewLucidity" text="..." style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Avg Lucidity" style="-fx-font-size: 11px; -fx-text-fill: #DDA0DD;" />
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER" style="-fx-background-color: rgba(218,112,214,0.2); -fx-background-radius: 15; -fx-padding: 15; -fx-min-width: 120;">
+                                    <Label text="🔥" style="-fx-font-size: 20px;" />
+                                    <Label fx:id="previewStreak" text="..." style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #F0F8FF;" />
+                                    <Label text="Current Streak" style="-fx-font-size: 11px; -fx-text-fill: #DDA0DD;" />
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <VBox spacing="0">
+            <Separator style="-fx-background-color: linear-gradient(to right, transparent, #8A2BE2, #DDA0DD, #8A2BE2, transparent); -fx-pref-height: 3;" />
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: linear-gradient(to right, rgba(26,26,46,0.9), rgba(16,33,62,0.8)); -fx-padding: 12 30; -fx-min-height: 50;">
+                <Label text="✨" style="-fx-font-size: 16px;" />
+                <Label text="Ready to explore your dreams" style="-fx-font-size: 12px; -fx-text-fill: #DDA0DD; -fx-font-style: italic;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="v1.0.0" style="-fx-font-size: 11px; -fx-text-fill: #9370DB;" />
+                <Label text="© 2025 Lucidia" style="-fx-font-size: 11px; -fx-text-fill: #9370DB;" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

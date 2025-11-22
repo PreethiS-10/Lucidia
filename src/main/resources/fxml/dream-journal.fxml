@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lucidia.lucidia.controller.DreamJournalController"
+      spacing="20" style="-fx-background-color: linear-gradient(135deg, #fbfbfb 0%, #f5f5f5 50%, #eeeeee 100%);"
+      padding="$x30">
+
+    <!-- Header Section -->
+    <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: linear-gradient(to right, rgba(138,43,226,0.1), rgba(75,0,130,0.1)); -fx-background-radius: 15; -fx-padding: 20;">
+        <Label text="🌙 Dream Journal" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c2c2c;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="statusLabel" text="Ready to record your dreams..." style="-fx-font-style: italic; -fx-font-size: 13px; -fx-text-fill: #555555;" />
+    </HBox>
+
+    <!-- Dream Metadata Cards -->
+    <HBox spacing="20" alignment="CENTER">
+        <!-- Date Card -->
+        <VBox spacing="8" alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0.2, 0, 2);" prefWidth="200">
+            <Label text="📅 Dream Date" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #333333;" />
+            <DatePicker fx:id="dreamDate" style="-fx-pref-width: 160;" />
+        </VBox>
+
+        <!-- Sleep Quality Card -->
+        <VBox spacing="8" alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0.2, 0, 2);" prefWidth="200">
+            <Label text="😴 Sleep Quality" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #333333;" />
+            <Slider fx:id="sleepQualitySlider" min="1" max="10" value="5" showTickLabels="true" showTickMarks="true" majorTickUnit="1" blockIncrement="1" prefWidth="180" />
+            <Label text="How well did you sleep?" style="-fx-font-size: 11px; -fx-text-fill: #666666; -fx-font-style: italic;" />
+        </VBox>
+
+        <!-- Lucidity Level Card -->
+        <VBox spacing="8" alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0.2, 0, 2);" prefWidth="200">
+            <Label text="🌟 Lucidity Level" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #333333;" />
+            <Slider fx:id="luciditySlider" min="0" max="5" value="0" showTickLabels="true" showTickMarks="true" majorTickUnit="1" blockIncrement="1" prefWidth="180" />
+            <Label text="Were you aware it was a dream?" style="-fx-font-size: 11px; -fx-text-fill: #666666; -fx-font-style: italic;" />
+        </VBox>
+    </HBox>
+
+    <!-- Dream Content Section -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.3, 0, 3);">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="💭 Dream Description" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="voiceButton" onAction="#handleVoiceInput" text="🎤 Voice Input"
+                    style="-fx-font-size: 12px; -fx-padding: 8 15; -fx-font-weight: 600;" />
+        </HBox>
+
+        <TextArea fx:id="dreamContent" prefRowCount="8" wrapText="true"
+                  promptText="Describe your dream in vivid detail... What did you see? Who was there? How did you feel? Include colors, emotions, sounds, and any symbols that stood out."
+                  style="-fx-font-size: 14px; -fx-line-spacing: 3px;" />
+
+        <!-- Action Buttons -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="saveButton" onAction="#handleSave" text="💾 Save Dream"
+                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+            <Button fx:id="analyzeButton" onAction="#handleAnalyze" text="🔍 Analyze Dream"
+                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+            <Button fx:id="clearButton" onAction="#handleClear" text="🗑️ Clear"
+                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+            <ProgressIndicator fx:id="analysisProgress" visible="false" prefWidth="30" prefHeight="30" />
+        </HBox>
+    </VBox>
+
+    <!-- Dream Visualization Section -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.3, 0, 3);">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="🎨 Dream Visualization" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="imageGenerationStatus" text="Ready to create magic"
+                   style="-fx-font-size: 13px; -fx-text-fill: #666666; -fx-font-style: italic;" />
+        </HBox>
+
+        <!-- Generation Controls -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Button fx:id="generateImageButton" onAction="#handleGenerateImage"
+                    text="🌈 Generate Visualization"
+                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" />
+            <Button fx:id="cancelGenerationButton" onAction="#handleCancelGeneration" text="❌ Cancel"
+                    style="-fx-font-size: 14px; -fx-padding: 12 25; -fx-font-weight: 600;" prefHeight="40" visible="false" />
+            <Region HBox.hgrow="ALWAYS" />
+            <ProgressBar fx:id="imageGenerationProgress" prefWidth="200" visible="false" />
+        </HBox>
+
+        <!-- Image Display -->
+        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: #f8f8f8; -fx-border-color: #d0d0d0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 20; -fx-border-width: 2; -fx-min-height: 300;">
+            <Label text="✨ Your Dream Visualization" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <ImageView fx:id="dreamVisualizationView" fitWidth="400" fitHeight="250"
+                       preserveRatio="true" smooth="true"
+                       style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.3, 0, 2);" />
+            <Label text="Transform your dreams into visual art" style="-fx-font-size: 12px; -fx-text-fill: #666666; -fx-font-style: italic;" />
+        </VBox>
+    </VBox>
+
+</VBox>

@@ -1,0 +1,46 @@
+# Compiled class files
+*.class
+/target/
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual environments
+python-env/
+venv/
+env/
+
+# Generated images (optional - you might want to keep these)
+generated_images/*.png
+generated_images/*.jpg
+
+# IDE files
+.idea/
+*.iml
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Model files (these are large)
+*.bin
+*.safetensors
