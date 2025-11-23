@@ -53,3 +53,11 @@ python-env/
 target/
 .env
 *.pyc
+
+dream_env/
+__pycache__/
+*.pyc
+*.pkl
+*.pt
+*.dll
+*.lib
