@@ -61,3 +61,5 @@ __pycache__/
 *.pt
 *.dll
 *.lib
+
+python-env/
